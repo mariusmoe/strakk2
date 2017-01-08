@@ -95,3 +95,9 @@ config.js
 img/
 
 node_modules/
+
+legacy/
+
+config.py
+
+testpage/

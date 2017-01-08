@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Strakk API - will provide strakk recipes",
+  "main": "index.js",
+  "dependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "consign": "^0.1.2",
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "helmet": "^3.1.0",
+    "jsonwebtoken": "^7.1.9",
+    "moment": "^2.15.1",
+    "mongoose": "^4.6.2",
+    "morgan": "^1.7.0",
+    "multer": "^1.2.0",
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0",
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5",
+    "sendgrid": "^4.5.0",
+    "validator": "^6.0.0"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "no yet"
+  },
+  "keywords": [
+    "strakk"
+  ],
+  "author": "marius oscar moe",
+  "license": "ISC"
+}
