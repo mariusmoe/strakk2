@@ -90,3 +90,8 @@ ENV/
 
 # Other
 config.js
+
+# ignore images and symbols
+img/
+
+node_modules/
