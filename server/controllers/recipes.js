@@ -39,6 +39,10 @@ exports.getOneById = function(req, res, next) {
       console.log("error here")
       return next(err);
     }
+    if (oneUser == null) {
+      console.log("- no user found")
+      return res.status(406).send({message: "Could not find the recipe"});
+    }
     return res.status(200).send({user: oneUser});
   });
 
@@ -76,29 +80,35 @@ exports.deleteById = function(req, res, next) {
 }
 
 exports.addRecipe = function(req, res, next) {
+  console.log("- processing")
   let userInfo = setUserInfo(req.user);
+  console.log("- OK")
   let newRecipe = req.body;
+  console.log("- OK")
+  console.log(req.body);
   // Check that the new article is not empty.
-  if ((typeof(newArticle) == 'undefined') ) {
+  if ((typeof(newRecipe) == 'undefined') ) {
         // console.log("\nUnprocessable Entity ERROR\n")
         return res.status(422);
   }
   // Check for bad recipe.
+  console.log(newRecipe.title)
   if (newRecipe.title == '' || newRecipe.intro == '' || newRecipe.txt == '' ||
       !(typeof(parseInt(newRecipe.price)) == "number")) {
         console.error("Recipe format is wrong");
         return res.status(422).send({message: 'The recipe is not formated right, is the price a number? ' + newRecipe, status: 4567})
       }
-
+    console.log("- OK")
     let theNewRecipe = new Recipe({
-    title         : theNewRecipe.title,
-    intro         : theNewRecipe.intro,
-    txt           : theNewRecipe.txt,
-    price         : theNewRecipe.price,
-    coverimg      : theNewRecipe.coverimg,
-    symbolLink    : theNewRecipe.symbolLink,
-    otherImg      : theNewRecipe.otherImg,
-    diagramImg    : theNewRecipe.diagramImg
+    strakkId      : newRecipe.strakkId,
+    title         : newRecipe.title,
+    intro         : newRecipe.intro,
+    txt           : newRecipe.txt,
+    price         : newRecipe.price,
+    coverimg      : newRecipe.coverimg,
+    symbolLink    : newRecipe.symbolLink,
+    otherImg      : newRecipe.otherImg,
+    diagramImg    : newRecipe.diagramImg
   });
 
     // Save the new article
