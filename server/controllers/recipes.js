@@ -49,23 +49,22 @@ exports.getOneById = function(req, res, next) {
 }
 
 exports.editById = function(req, res, next) {
-  const newMesage = req.body.message;
-  Recipe.findOne({_id: req.params.id}, (err, oneUser) => {
+  if (!req.body) {
+    return res.status(204).json({ message: 'Nothing to edit' });
+  }
+  const newMesage = req.body;
+  Recipe.findOne({_id: req.params.id}, (err, oneRecipe) => {
     if (err) { return next(err); }
-    if (!newMesage) {
-      return res.status(204).json({ message: 'Nothing to edit' });
-    }
-    let newRecipe = new Recipe({
-    title         : newRecipe.title,
-    intro         : newRecipe.intro,
-    txt           : newRecipe.txt,
-    price         : newRecipe.price,
-    coverimg      : newRecipe.coverimg,
-    symbolLink    : newRecipe.symbolLink,
-    otherImg      : newRecipe.otherImg,
-    diagramImg    : newRecipe.diagramImg
-    })
-    newRecipe.save( (err) => {
+      oneRecipe.strakkId      = newMesage.strakkId    || oneRecipe.strakkId ,
+      oneRecipe.title         = newMesage.title       || oneRecipe.title,
+      oneRecipe.intro         = newMesage.intro       || oneRecipe.intro,
+      oneRecipe.txt           = newMesage.txt         || oneRecipe.txt,
+      oneRecipe.price         = newMesage.price       || oneRecipe.price,
+      oneRecipe.coverimg      = newMesage.coverimg    || oneRecipe.coverimg,
+      oneRecipe.symbolLink    = newMesage.symbolLink  || oneRecipe.symbolLink,
+      oneRecipe.otherImg      = newMesage.otherImg    || oneRecipe.otherImg,
+      oneRecipe.diagramImg    = newMesage.diagramImg  || oneRecipe.diagramImg
+    oneRecipe.save( (err) => {
       if (err) {return res.status(400).send({message: 'Somthing went wrong' + err, status: 2345}); }
       return res.status(200).send({message: 'Accepted - recepie changed'})
     })
@@ -80,19 +79,15 @@ exports.deleteById = function(req, res, next) {
 }
 
 exports.addRecipe = function(req, res, next) {
-  console.log("- processing")
   let userInfo = setUserInfo(req.user);
-  console.log("- OK")
   let newRecipe = req.body;
-  console.log("- OK")
-  console.log(req.body);
+
   // Check that the new article is not empty.
   if ((typeof(newRecipe) == 'undefined') ) {
         // console.log("\nUnprocessable Entity ERROR\n")
         return res.status(422);
   }
   // Check for bad recipe.
-  console.log(newRecipe.title)
   if (newRecipe.title == '' || newRecipe.intro == '' || newRecipe.txt == '' ||
       !(typeof(parseInt(newRecipe.price)) == "number")) {
         console.error("Recipe format is wrong");
