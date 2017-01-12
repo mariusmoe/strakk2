@@ -8,7 +8,9 @@ const jwt = require('jsonwebtoken'),
       randomstring = require("randomstring"),
       status = require('../status');
 
-// Set user info from request
+/**
+ * Set user info from request
+ */
 function setUserInfo(request) {
   let getUserInfo = {
     _id: request._id,
@@ -21,17 +23,32 @@ function setUserInfo(request) {
   return getUserInfo;
 }
 
+/** [filteredArticles description] */
 exports.filteredArticles = function(req, res, next) {
 
 }
 
-exports.allArticles = function(req, res, next) {
+/**
+ * Retrive all recipes
+ * @param  {json}   req  request object
+ * @param  {json}   res  response object
+ * @param  {Function} next pass error further
+ * @return {json}        response
+ */
+exports.allRecipes = function(req, res, next) {
   Recipe.find({}, (err, recipes) => {
     if (err) { return next(err); }
     return res.status(200).send({recipes: recipes});
   });
 }
 
+/**
+ * get one recipe by ID
+ * @param  {json}   req  [description]
+ * @param  {json}   res  [description]
+ * @param  {Function} next [description]
+ * @return {json}        [description]
+ */
 exports.getOneById = function(req, res, next) {
   Recipe.findById(req.params.id, (err, oneUser) => {
     if (err) {

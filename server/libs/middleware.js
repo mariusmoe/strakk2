@@ -1,9 +1,14 @@
 const bodyParser = require('body-parser'),
-      logger = require('morgan');
+      logger = require('morgan'),
+      helmet = require('helmet');
+
 
 module.exports = app => {
   // Pretty print for easy development
   app.set("json spaces", 4);
+
+  // Secure app with helmet ;)
+  app.use(helmet());
 
   // Set the port used by the server
   app.set('port', 2000);

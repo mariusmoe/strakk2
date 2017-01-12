@@ -101,3 +101,5 @@ legacy/
 config.py
 
 testpage/
+
+out/

@@ -1,10 +1,5 @@
 const mongoose = require('mongoose'),
-      config = require('./config'),
-      helmet = require('helmet');
-
-// Secure app with helmet ;)
-// app.use(helmet());
-
+      config = require('./config');
 // Use a different Promise provider then mongooses mpromise (its depricated)
 mongoose.Promise = Promise;
 module.exports = app => {

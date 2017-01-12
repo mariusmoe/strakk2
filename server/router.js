@@ -74,13 +74,13 @@ module.exports = function(app) {
    |--------------------------------------------------------------------------
   */
   // Get all articles in DB
-  recipeRoutes.get('/all', requireAuth, RecipeController.allArticles);
+  recipeRoutes.get('/all', requireAuth, RecipeController.allRecipes);
 
   // Get 50 articles based on filters
   recipeRoutes.get('/filtered', requireAuth, RecipeController.filteredArticles);
 
   // Get all recipes
-  recipeRoutes.get('/recipe', requireAuth, RecipeController.allArticles);
+  recipeRoutes.get('/recipe', requireAuth, RecipeController.allRecipes);
 
   // Get one article by id
   recipeRoutes.get('/recipe/:id', requireAuth, RecipeController.getOneById);
