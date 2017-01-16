@@ -28,15 +28,15 @@ export class AuthenticationService {
      */
     constructor(private http: Http) {
         // set token and user model if saved in local storage
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
           // set token
-          this.token = currentUser.token;
+          this.token          = currentUser.token;
           // set user model
-          this.user.email = currentUser.email;
+          this.user.email     = currentUser.email;
           this.user.firstName = currentUser.firstName;
-          this.user.lastName = currentUser.lastName;
-          this.user.role = currentUser.role;
+          this.user.lastName  = currentUser.lastName;
+          this.user.role      = currentUser.role;
           // push user to subscribers
           this.userSub.next(this.user);
         }
@@ -64,11 +64,15 @@ export class AuthenticationService {
      * @return boolean  if login was successful or not
      */
     login(email, password): Observable<boolean> {
-      let headers = new Headers({ "content-type": "application/x-www-form-urlencoded" });
+      let headers = new Headers({ "content-type": "application/json" });
       let options = new RequestOptions({ headers: headers });
-      let body = 'email='+email + '&password='+password;
+      // let body = 'email='+email + '&password='+password;
+      let data = { "email": email, "password": password }
+      let body = JSON.stringify(data);
+
         return this.http.post(this.urlLogin, body, options)
-            .map((response: Response) => {
+          .map(
+            response => {
                 // console.log("tried to connect to del-API");
                 // login successful if there's a jwt token in the response
                 let json = response.json();
@@ -98,21 +102,13 @@ export class AuthenticationService {
                     // return false to indicate failed login
                     return false;
                 }
-            }).catch((error: any) => {
-              // Auth Failed, log out (fallback)
-              this.logout();
-
-              // TODO: This somehow bugs out and catches an error
-              // for wrong password / email, despite otherwise valid input.
-
-              // In a real world app, we might use a remote logging infrastructure
-              // We'd also dig deeper into the error to get a better message
-              let errMsg = (error.message) ? error.message :
-                error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-              // console.error(errMsg); // log to console instead
-              return Observable.throw(errMsg);
-            });
-    }
+            },
+            error => {
+              console.log(error.text());
+              return false;
+            }
+          );
+        }
 
     /**
      * logout
