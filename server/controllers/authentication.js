@@ -142,6 +142,12 @@ exports.register = function(req, res, next) {
         }
         if (response.statusCode == 202){
             // console.log("Mail server OK: " + response.statusCode)
+                  // Save the user
+                  user.save(function(err, user) {
+                    if (err) { return next(err); }
+                    // TODO: Dont send this if the email fails
+                    res.status(200).send({ message: 'Account created', status: 200 });
+                  });
         }
         else{
           // console.log("Mail server responded with: " + response.statusCode);
@@ -155,12 +161,6 @@ exports.register = function(req, res, next) {
       //              End of email
       // *********************************************
 
-      // Save the user
-      user.save(function(err, user) {
-        if (err) { return next(err); }
-        // TODO: Dont send this if the email fails
-        res.status(200).send({ message: 'Account created', status: 200 });
-      });
   });
 }
 
@@ -259,6 +259,12 @@ exports.newConfirmationLink = function(req, res, next){
         }
         if (response.statusCode == 202){
             // console.log("Mail server OK: " + response.statusCode)
+            user.save(function(err){
+              if(err){
+                throw err;
+              }
+              return res.status(200).send({message: 'New email with confirmation is on its way ', status: 8888})
+            })
         }
         else{
           // console.log("Mail server responded with: " + response.statusCode);
@@ -270,12 +276,7 @@ exports.newConfirmationLink = function(req, res, next){
       // *********************************************
       //              End of email
       // *********************************************
-      user.save(function(err){
-        if(err){
-          throw err;
-        }
-        return res.status(200).send({message: 'New email with confirmation is on its way ', status: 8888})
-      })
+
 })
 }
 
