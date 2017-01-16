@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { AuthGuard } from './_guards/index';
+import { AuthenticationService } from './_services/index';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +18,10 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthenticationService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,5 +4,23 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  // Routes for development
+  URL: {
+    login: 'http://localhost:2000/api/auth/login',
+    deleteAccount: 'http://localhost:2000/api/auth/delete_my_account',
+    changeEmail: 'http://localhost:2000/api/auth/change_email',
+    registerUser: 'http://localhost:2000/api/auth/register',
+    renewJWT: 'http://localhost:2000/api/auth/get_new_token',
+    getArticles: 'http://localhost:2000/api/articles/filtered',
+    addArticle: 'http://localhost:2000/api/articles/add_article',
+    getArticleById: 'http://localhost:2000/api/articles/byid',
+    getRecentlyViewedArticles: 'http://localhost:2000/api/articles/recently_viewed',
+    getUsers: 'http://localhost:2000/api/auth/test_auth_route',
+    uploadArticleImages: 'http://localhost:2000/api/articles/upload_article_images',
+    thisRoot: 'http://localhost:2000/'
+  }
+
+
 };
