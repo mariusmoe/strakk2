@@ -77,7 +77,7 @@ module.exports = function(app) {
   recipeRoutes.get('/all', requireAuth, RecipeController.allRecipes);
 
   // Get 50 articles based on filters
-  recipeRoutes.get('/filtered', requireAuth, RecipeController.filteredArticles);
+  recipeRoutes.get('/filtered', requireAuth, RecipeController.filteredRecipes);
 
   // Get all recipes
   recipeRoutes.get('/recipe', requireAuth, RecipeController.allRecipes);

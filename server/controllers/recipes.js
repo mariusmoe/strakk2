@@ -24,16 +24,16 @@ function setUserInfo(request) {
 }
 
 /** [filteredArticles description] */
-exports.filteredArticles = function(req, res, next) {
-
+exports.filteredRecipes = function(req, res, next) {
+  // TODO return filtered list of
 }
 
 /**
  * Retrive all recipes
- * @param  {json}   req  request object
- * @param  {json}   res  response object
+ * @param  {Object}   req  request object
+ * @param  {Object}   res  response object
  * @param  {Function} next pass error further
- * @return {json}        response
+ * @return {Object}        response
  */
 exports.allRecipes = function(req, res, next) {
   Recipe.find({}, (err, recipes) => {
@@ -44,10 +44,10 @@ exports.allRecipes = function(req, res, next) {
 
 /**
  * get one recipe by ID
- * @param  {json}   req  [description]
- * @param  {json}   res  [description]
- * @param  {Function} next [description]
- * @return {json}        [description]
+ * @param  {Object}   req  request
+ * @param  {Object}   res  response
+ * @param  {Function} next pass error further
+ * @return {Object}        [description]
  */
 exports.getOneById = function(req, res, next) {
   Recipe.findById(req.params.id, (err, oneUser) => {
@@ -65,29 +65,32 @@ exports.getOneById = function(req, res, next) {
 
 }
 
+/**
+ * Edit one recipe provided the ID
+ * @param  {Object}   req  request
+ * @param  {Object}   res  response
+ * @param  {Function} next pass error further
+ * @return {Object}        [description]
+ */
 exports.editById = function(req, res, next) {
   if (!req.body) {
     return res.status(204).json({ message: 'Nothing to edit' });
   }
   const newMesage = req.body;
-  Recipe.findOne({_id: req.params.id}, (err, oneRecipe) => {
-    if (err) { return next(err); }
-      oneRecipe.strakkId      = newMesage.strakkId    || oneRecipe.strakkId ,
-      oneRecipe.title         = newMesage.title       || oneRecipe.title,
-      oneRecipe.intro         = newMesage.intro       || oneRecipe.intro,
-      oneRecipe.txt           = newMesage.txt         || oneRecipe.txt,
-      oneRecipe.price         = newMesage.price       || oneRecipe.price,
-      oneRecipe.coverimg      = newMesage.coverimg    || oneRecipe.coverimg,
-      oneRecipe.symbolLink    = newMesage.symbolLink  || oneRecipe.symbolLink,
-      oneRecipe.otherImg      = newMesage.otherImg    || oneRecipe.otherImg,
-      oneRecipe.diagramImg    = newMesage.diagramImg  || oneRecipe.diagramImg
-    oneRecipe.save( (err) => {
-      if (err) {return res.status(400).send({message: 'Somthing went wrong' + err, status: 2345}); }
+  let id = req.params.id
+  Recipe.findByIdAndUpdate(id, newMesage, (err, doc) => {
+      if (err) return res.send(500, { error: err });
       return res.status(200).send({message: 'Accepted - recepie changed'})
-    })
   });
 }
 
+/**
+ * Delete one recipe provided the ID
+ * @param  {Object}   req  request
+ * @param  {Object}   res  response
+ * @param  {Function} next pass error further
+ * @return {Object}        [description]
+ */
 exports.deleteById = function(req, res, next) {
   Recipe.findByIdAndRemove(req.params.id, (err, recipe) => {
     if (err) { return next(err); }
@@ -95,6 +98,12 @@ exports.deleteById = function(req, res, next) {
   });
 }
 
+/**
+ * Add one new recipe
+ * @param  {Object}   req  request
+ * @param  {Object}   res  response
+ * @param {Function} next [description]
+ */
 exports.addRecipe = function(req, res, next) {
   let userInfo = setUserInfo(req.user);
   let newRecipe = req.body;
@@ -112,18 +121,18 @@ exports.addRecipe = function(req, res, next) {
       }
     console.log("- OK")
     let theNewRecipe = new Recipe({
-    strakkId      : newRecipe.strakkId,
-    title         : newRecipe.title,
-    intro         : newRecipe.intro,
-    txt           : newRecipe.txt,
-    price         : newRecipe.price,
-    coverimg      : newRecipe.coverimg,
-    symbolLink    : newRecipe.symbolLink,
-    otherImg      : newRecipe.otherImg,
-    diagramImg    : newRecipe.diagramImg
-  });
+      strakkId      : newRecipe.strakkId,
+      title         : newRecipe.title,
+      intro         : newRecipe.intro,
+      txt           : newRecipe.txt,
+      price         : newRecipe.price,
+      coverimg      : newRecipe.coverimg,
+      symbolLink    : newRecipe.symbolLink,
+      otherImg      : newRecipe.otherImg,
+      diagramImg    : newRecipe.diagramImg
+    });
 
-    // Save the new article
+    // Save the new recipe
     theNewRecipe.save(function(err){
       if (err) {
         return res.status(400).send({message: 'Something is wrong. Could not add article: ' + err, status: 2345});
@@ -134,5 +143,7 @@ exports.addRecipe = function(req, res, next) {
 }
 
 exports.recentlyViewed = function(req, res, next) {
-
+  // TODO return recent viewed items
+  // TODO add recentlyViewed list to GET recipe
+  // Can this be done with google analytics?
 }
