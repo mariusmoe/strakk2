@@ -1,3 +1,32 @@
-<p>
-  usersettings works!
-</p>
+<div>
+  <h1>Settings</h1>
+  <md-tab-group>
+  <md-tab label="One">
+    <h3>Some tab content</h3>
+    <br>
+    <md-card>
+      <p>Email </p>
+      <!-- <md-input-container>
+        <input mdInput
+               placeholder="name@domain.code"
+               value="{{user.email}}"
+               #newEmail>
+      </md-input-container> -->
+      <md-input-container>
+        <input md-input
+          placeholder="{{user.email}}"
+          #newEmail>
+      </md-input-container>
+      <button md-raised-button color="primary" [disabled]='newEmail.placeholder==user.email' (click)="changeEmail(newEmail.value)">Change email</button>
+    </md-card>
+    <md-card>
+      <p>This action will delete account </p>
+        <button md-raised-button color="warn" (click)="openDialog()">Delete account</button>
+    </md-card>
+  </md-tab>
+  <md-tab label="Two">
+    <h1>Some more tab content</h1>
+    <p>...</p>
+  </md-tab>
+</md-tab-group>
+</div>

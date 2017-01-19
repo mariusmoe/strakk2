@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app.routing-module';
 import { AuthGuard } from './_guards/index';
 import { AuthenticationService } from './_services/index';
 import { LoginComponent } from './users/login/login.component';
-import { UsersettingsComponent } from './users/usersettings/usersettings.component';
+import { UsersettingsComponent, DeleteDialog } from './users/usersettings/usersettings.component';
 import { SingleComponent } from './recipe/single/single.component';
 import { AllComponent } from './recipe/all/all.component';
 import { HomeComponent } from './home/home.component';
@@ -25,7 +25,8 @@ import { HomeComponent } from './home/home.component';
     UsersettingsComponent,
     SingleComponent,
     AllComponent,
-    HomeComponent
+    HomeComponent,
+    DeleteDialog
   ],
   providers: [
     AuthGuard,
@@ -37,6 +38,9 @@ import { HomeComponent } from './home/home.component';
     HttpModule,
     AppRoutingModule,
     MaterialModule.forRoot()
+  ],
+  entryComponents: [
+    DeleteDialog
   ],
   bootstrap: [AppComponent]
 })

@@ -4,24 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './users/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_guards/index';
-// import { UsersettingsComponent } from './usersettings/index';
+import { AllComponent } from './recipe/all/all.component';
+import { UsersettingsComponent } from './users/usersettings/usersettings.component';
 // import { RegisterComponent } from './register/register.component';
-//
-// import { MapViewComponent } from './map/map.component';
-// import { AddarticleComponent } from './addarticle/addarticle.component';
-// import { ArticlePageComponent} from './articlepage/index';
-
-
 
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
-    // { path: 'add_article', component: AddarticleComponent, canActivate: [AuthGuard] },
-    // { path: 'my_account', component: UsersettingsComponent, canActivate: [AuthGuard] },
-       { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'all', component: AllComponent, canActivate: [AuthGuard] },
+    { path: 'settings', component: UsersettingsComponent, canActivate: [AuthGuard] },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     // { path: 'register', component: RegisterComponent },
-    // { path: 'map', component: MapViewComponent, canActivate: [AuthGuard]  },
-    // { path: 'article/:articleid', component: ArticlePageComponent, canActivate: [AuthGuard] },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
