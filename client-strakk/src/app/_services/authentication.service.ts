@@ -20,6 +20,7 @@ export class AuthenticationService {
     private urlChangeEmail:string = environment.URL.changeEmail;
     private urlRegisterUser:string = environment.URL.registerUser;
     private urlRenewJWT: string = environment.URL.renewJWT;
+    private urlChangePassword: string = environment.URL.changePassword;
 
     /**
      * Constructor - set user to current user from localstorage
@@ -73,6 +74,10 @@ export class AuthenticationService {
         return this.http.post(this.urlLogin, body, options)
           .map(
             response => {
+                if (response.status == 401){
+                  console.log("cant login")
+                  return false;
+                }
                 // console.log("tried to connect to del-API");
                 // login successful if there's a jwt token in the response
                 let json = response.json();
@@ -193,6 +198,40 @@ export class AuthenticationService {
                 }
               })
         }
+
+
+        /**
+         * Change password for this user
+         * @param  {string}              password the new password
+         * @return {Observable<boolean>}          true if successful otherwise false
+         */
+        changePassword(password): Observable<boolean> {
+          let headers = new Headers();
+          headers.append('Content-Type', 'application/json');
+          // Add JWT to headder for authorization
+          headers.append('Authorization', `${this.token}`);
+          let data = { "password": password }
+          let body = JSON.stringify(data);
+          let options = new RequestOptions({ headers: headers });
+          let url = this.urlChangePassword;
+            return this.http.post(url, body, options)
+                .map((response: Response) => {
+                  // console.log(response);
+                  let json = response.json();
+                  if (json) {
+                    if (json.status == 723433 ){
+                      this.token = null;
+                      this.user = new User(); // wipe the slate
+                      localStorage.removeItem('currentUser');
+                      this.userSub.next(null);
+                      return true;
+                    }
+                  }
+                  else {
+                    return false;
+                  }
+                })
+          }
 
       /**
        * register

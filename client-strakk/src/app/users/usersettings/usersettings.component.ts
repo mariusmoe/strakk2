@@ -47,6 +47,7 @@ export class UsersettingsComponent implements OnInit {
    * change Email of the current user
    *
    * Change the email to the value provided
+   * * @param  {string} value new email
    */
   changeEmail(value: string) {
     // console.log(this.user.email);
@@ -55,7 +56,23 @@ export class UsersettingsComponent implements OnInit {
               if (result === true) {
                   this.router.navigate(['/login']);
               } else {
-                  // console.log("Error - You cant change your email right now")
+                  console.error("Error - You cant change your email right now")
+              }
+          });
+  }
+
+
+  /**
+   * changenew Password for this user
+   * @param  {string} value new password
+   */
+  changenewPassword(value: string) {
+      this.service.changePassword(value)
+          .subscribe(result => {
+              if (result === true) {
+                  this.router.navigate(['/login']);
+              } else {
+                  console.error("Error - You cant change your password right now")
               }
           });
   }
@@ -65,7 +82,7 @@ export class UsersettingsComponent implements OnInit {
    * Delete the current user
    *
    * Delete the user that is currently loged in
-   * The AuthenticationService then handles the actual logging in.
+   * The AuthenticationService then handles the actual login.
    */
   delete() {
       this.service.deleteAccoutn()
@@ -73,7 +90,7 @@ export class UsersettingsComponent implements OnInit {
               if (result === true) {
                   this.router.navigate(['/login']);
               } else {
-                  // console.log("Error - your account might not have been deleted")
+                  console.error("Error - your account might not have been deleted")
               }
           });
   }

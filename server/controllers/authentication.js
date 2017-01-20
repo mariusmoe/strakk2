@@ -335,7 +335,31 @@ exports.changeEmail = function(req, res, next) {
       return res.status(200).send({message: 'Email changed ', status: 87543})
     });
   });
+}
 
+//========================================
+// changePassword for this account
+//========================================
+// Change the password of the account that is currently loged in.
+exports.changePassword = (req, res, next) => {
+  User.findById(req.user._id, function(err, foundUser) {
+    if (err) {
+      res.status(422).json({ error: 'No user was found.' });
+      return next(err);
+    }
+    if (req.body.password == '') {
+      res.status(422).json({ error: 'No password to set.' });
+      return next(err);
+    }
+    foundUser.password = req.body.password
+
+    foundUser.save((err) => {
+      if(err){
+        throw err;
+      }
+      return res.status(200).send({message: 'Password changed ', status: 723433})
+    });
+  });
 }
 
 //========================================

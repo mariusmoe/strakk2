@@ -66,6 +66,9 @@ module.exports = function(app) {
   // Request a new token
   authRoutes.get('/get_new_token', requireAuth, AuthenticationController.getNewJWT);
 
+  // Change password from within app
+  authRoutes.post('/change_password', requireAuth, AuthenticationController.changePassword);
+
   // TODO Login with oAuth2.0 -- way ahead
 
   /*

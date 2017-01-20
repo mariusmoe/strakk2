@@ -19,7 +19,8 @@ export const environment = {
     getRecentlyViewedArticles: 'http://localhost:2000/api/articles/recently_viewed',
     getUsers: 'http://localhost:2000/api/auth/test_auth_route',
     uploadArticleImages: 'http://localhost:2000/api/articles/upload_article_images',
-    thisRoot: 'http://localhost:2000/'
+    thisRoot: 'http://localhost:2000/',
+    changePassword: 'http://localhost:2000/api/auth/change_password'
   }
 
 

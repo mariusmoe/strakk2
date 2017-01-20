@@ -56,6 +56,12 @@ export class LoginComponent implements OnInit {
                     this.error = 'Email or password is incorrect';
                     this.loading = false;
                 }
-            });
+            },
+            error => {
+              this.model.password = "";
+              this.error = 'Email or password is incorrect';
+              this.loading = false;
+            }
+          );
     }
 }

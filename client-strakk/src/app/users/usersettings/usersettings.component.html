@@ -1,11 +1,10 @@
 <div>
   <h1>Settings</h1>
   <md-tab-group>
-  <md-tab label="One">
-    <h3>Some tab content</h3>
-    <br>
+  <md-tab label="User settings">
+
     <md-card>
-      <p>Email </p>
+      <p>Email</p>
       <!-- <md-input-container>
         <input mdInput
                placeholder="name@domain.code"
@@ -17,14 +16,31 @@
           placeholder="{{user.email}}"
           #newEmail>
       </md-input-container>
-      <button md-raised-button color="primary" [disabled]='newEmail.placeholder==user.email' (click)="changeEmail(newEmail.value)">Change email</button>
+      <button md-raised-button color="primary" [disabled]='newEmail.value==user.email || newEmail.value== "" ' (click)="changeEmail(newEmail.value)">Change email</button>
     </md-card>
     <md-card>
-      <p>This action will delete account </p>
-        <button md-raised-button color="warn" (click)="openDialog()">Delete account</button>
+      <p>Password</p>
+      <!-- <md-input-container>
+        <input mdInput
+               placeholder="name@domain.code"
+               value="{{user.email}}"
+               #newEmail>
+      </md-input-container> -->
+      <md-input-container>
+        <input md-input
+          type="password"
+          placeholder="min 5 cahracters"
+          #newPassword>
+          <md-hint align="end">{{newPassword.value.length}} / 4++</md-hint>
+      </md-input-container>
+      <button md-raised-button color="primary"  minlength="3" [disabled]='newPassword.value.length <= 3 || newPassword.value== "" ' (click)="changenewPassword(newPassword.value)">Change password</button>
+    </md-card>
+    <md-card>
+      <p>Delete account</p>
+        <button md-raised-button color="warn" (click)="openDialog()">Delete!</button>
     </md-card>
   </md-tab>
-  <md-tab label="Two">
+  <md-tab label="Strakk settings">
     <h1>Some more tab content</h1>
     <p>...</p>
   </md-tab>
