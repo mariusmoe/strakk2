@@ -5,3 +5,7 @@
 .loginForm {
   max-width: 300px;
 }
+
+.red-warning {
+  color: red;
+}

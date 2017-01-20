@@ -4,12 +4,25 @@
           (ngSubmit)="f.form.valid && login()"
           #f="ngForm"novalidate
           class="loginForm">
-      <md-input style="flex: none;" type="text" name="email" [(ngModel)]="model.email" #email="ngModel" required  placeholder="Email"></md-input>
-      <md-input type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required placeholder="Password"></md-input>
+      <md-input style="flex: none;"
+        type="text"
+        name="email"
+        [(ngModel)]="model.email"
+        #email="ngModel"
+        required
+        placeholder="Email">
+      </md-input>
+      <md-input type="password"
+        name="password"
+        [(ngModel)]="model.password"
+        #password="ngModel"
+        required
+        placeholder="Password">
+      </md-input>
       <div>
         <button [disabled]="loading" md-raised-button color="accent">Login</button>
         <md-spinner *ngIf="loading" class="app-spinner"></md-spinner>
-        <p *ngIf="error" color="warn">{{error}}</p>
+        <p class="red-warning" *ngIf="error">{{error}}</p>
       </div>
     </form>
     <div>

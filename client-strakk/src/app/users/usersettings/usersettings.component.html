@@ -20,12 +20,6 @@
     </md-card>
     <md-card>
       <p>Password</p>
-      <!-- <md-input-container>
-        <input mdInput
-               placeholder="name@domain.code"
-               value="{{user.email}}"
-               #newEmail>
-      </md-input-container> -->
       <md-input-container>
         <input md-input
           type="password"
@@ -33,7 +27,32 @@
           #newPassword>
           <md-hint align="end">{{newPassword.value.length}} / 4++</md-hint>
       </md-input-container>
-      <button md-raised-button color="primary"  minlength="3" [disabled]='newPassword.value.length <= 3 || newPassword.value== "" ' (click)="changenewPassword(newPassword.value)">Change password</button>
+      <br>
+      <md-input-container>
+        <input md-input
+          [disabled]='newPassword.value.length <= 3 || newPassword.value== "" '
+          type="password"
+          placeholder="min 5 cahracters"
+          #newPassword2>
+          <md-hint align="end">
+            {{newPassword2.value.length}} / 4++</md-hint>
+      </md-input-container>
+      <md-icon class="done" *ngIf="newPassword.value == newPassword2.value && !newPassword.value == '' ">done all</md-icon>
+      <br>
+      <button md-raised-button
+        #passwordShangeButton
+        color="primary"
+        minlength="3"
+        md-visible="true"
+        [mdTooltip]="(newPassword.value.length <= 3 || !(newPassword.value == newPassword2.value) || newPassword.value== '') ? 'You need to write the same password twice' : 'Go on and magic will happen' "
+        mdTooltipPosition="below"
+        [disabled]='newPassword.value.length <= 3 || !(newPassword.value == newPassword2.value) || newPassword.value== "" '
+        (click)="changenewPassword(newPassword.value)">
+        <div [mdTooltip]="(newPassword.value.length <= 3 || !(newPassword.value == newPassword2.value) || newPassword.value== '') ? 'You need to write the same password twice' : 'Go on and magic will happen' "
+        mdTooltipPosition="below">
+          Change password
+        </div>
+      </button>
     </md-card>
     <md-card>
       <p>Delete account</p>
