@@ -13,7 +13,7 @@ export const environment = {
     changeEmail: 'http://localhost:2000/api/auth/change_email',
     registerUser: 'http://localhost:2000/api/auth/register',
     renewJWT: 'http://localhost:2000/api/auth/get_new_token',
-    getArticles: 'http://localhost:2000/api/articles/filtered',
+    getRecipes: 'http://localhost:2000/api/recipe/recipe',
     addArticle: 'http://localhost:2000/api/articles/add_article',
     getArticleById: 'http://localhost:2000/api/articles/byid',
     getRecentlyViewedArticles: 'http://localhost:2000/api/articles/recently_viewed',

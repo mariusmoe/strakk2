@@ -9,12 +9,13 @@ import { AppRoutingModule } from './app.routing-module';
 
 
 import { AuthGuard } from './_guards/index';
-import { AuthenticationService } from './_services/index';
+import { AuthenticationService, RecipeService } from './_services/index';
 import { LoginComponent } from './users/login/login.component';
 import { UsersettingsComponent, DeleteDialog } from './users/usersettings/usersettings.component';
 import { SingleComponent } from './recipe/single/single.component';
 import { AllComponent } from './recipe/all/all.component';
 import { HomeComponent } from './home/home.component';
+
 
 
 
@@ -31,6 +32,7 @@ import { HomeComponent } from './home/home.component';
   providers: [
     AuthGuard,
     AuthenticationService,
+    RecipeService
   ],
   imports: [
     BrowserModule,

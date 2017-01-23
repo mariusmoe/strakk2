@@ -1,3 +1,7 @@
-<p>
-  single works!
-</p>
+<md-card class="noPadding">
+  <h3>{{recipe.title}}</h3>
+  <img src="{{recipe.coverimg}}" alt="recipe Image">
+  <div [innerHTML]='recipe.intro'></div>
+  <p>{{recipe.coverimg}}</p>
+  <br>
+</md-card>
