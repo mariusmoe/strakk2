@@ -21,4 +21,6 @@ export class SingleComponent implements OnInit {
     this.tag.emit(s);
   }
 
+
+
 }

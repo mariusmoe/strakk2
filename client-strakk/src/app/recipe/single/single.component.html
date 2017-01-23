@@ -1,7 +1,18 @@
 <md-card class="noPadding">
+  <div class="imageContainer">
+    <img src="{{recipe.coverimg}}" alt="recipe Image">
+  </div>
+  <!--  NOT WORKING!!!! -->
+  <p>{{recipe.id}}</p>
   <h3>{{recipe.title}}</h3>
-  <img src="{{recipe.coverimg}}" alt="recipe Image">
-  <div [innerHTML]='recipe.intro'></div>
-  <p>{{recipe.coverimg}}</p>
-  <br>
+  <div [innerHTML]='recipe.intro' class="ellipsis"></div>
+  <!-- <p>{{recipe.coverimg}}</p> -->
+  <!-- <button class="semi-transparent-button">
+    more
+  </button> -->
+  <a class="semi-transparent-button with-border"
+    href="#"
+    [routerLink]="['/one/', recipe._id]">
+    <md-icon>add</md-icon>
+  </a>
 </md-card>

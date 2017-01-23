@@ -15,6 +15,7 @@ import { UsersettingsComponent, DeleteDialog } from './users/usersettings/userse
 import { SingleComponent } from './recipe/single/single.component';
 import { AllComponent } from './recipe/all/all.component';
 import { HomeComponent } from './home/home.component';
+import { OneComponent } from './recipe/one/one.component';
 
 
 
@@ -27,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     SingleComponent,
     AllComponent,
     HomeComponent,
-    DeleteDialog
+    DeleteDialog,
+    OneComponent
   ],
   providers: [
     AuthGuard,

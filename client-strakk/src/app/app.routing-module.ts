@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_guards/index';
 import { AllComponent } from './recipe/all/all.component';
 import { UsersettingsComponent } from './users/usersettings/usersettings.component';
-// import { RegisterComponent } from './register/register.component';
+import { OneComponent } from './recipe/one/one.component';
 
 
 const appRoutes: Routes = [
@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     { path: 'all', component: AllComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: UsersettingsComponent, canActivate: [AuthGuard] },
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-    // { path: 'register', component: RegisterComponent },
+     { path: 'one', component: OneComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
