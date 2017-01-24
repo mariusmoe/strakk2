@@ -15,7 +15,7 @@ export const environment = {
     renewJWT: 'http://localhost:2000/api/auth/get_new_token',
     getRecipes: 'http://localhost:2000/api/recipe/recipe',
     addArticle: 'http://localhost:2000/api/articles/add_article',
-    getArticleById: 'http://localhost:2000/api/articles/byid',
+    urlGetRecipeByID: 'http://localhost:2000/api/recipe/recipe',
     getRecentlyViewedArticles: 'http://localhost:2000/api/articles/recently_viewed',
     getUsers: 'http://localhost:2000/api/auth/test_auth_route',
     uploadArticleImages: 'http://localhost:2000/api/articles/upload_article_images',

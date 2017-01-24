@@ -14,7 +14,9 @@ export class AllComponent implements OnInit {
   private loading: boolean = false;
 
   constructor(
-    private recipeService: RecipeService) { }
+    private recipeService: RecipeService) {
+
+    }
 
   ngOnInit() {
     this.getRecipes();

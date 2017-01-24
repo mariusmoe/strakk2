@@ -11,10 +11,10 @@ import { OneComponent } from './recipe/one/one.component';
 
 const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'all', component: AllComponent, canActivate: [AuthGuard] },
+    // { path: 'all', component: AllComponent, canActivate: [AuthGuard] },
     { path: 'settings', component: UsersettingsComponent, canActivate: [AuthGuard] },
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-     { path: 'one', component: OneComponent },
+     { path: 'one/:recipeid', component: OneComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

@@ -1,3 +1,17 @@
-<p>
-  one works!
-</p>
+<md-card class="noPadding" *ngIf="recipe">
+  <p>{{recipe._id}}</p>
+  <div class="imageContainer">
+    <img src="{{recipe.coverimg}}" alt="recipe Image">
+  </div>
+  <!--  NOT WORKING!!!! -->
+  <h3>{{recipe.title}}</h3>
+  <div [innerHTML]='recipe.intro' class="ellipsis"></div>
+  <br>
+  <p>{{recipe.txt}}</p>
+
+  <!-- NYI  !!!
+
+  <div *ngFor="let image of recipe.otherImg" class="imageContainer" >
+    <img src="'img/cover/' +'{{image}}'" alt="recipe alt Image">
+  </div> -->
+</md-card>
